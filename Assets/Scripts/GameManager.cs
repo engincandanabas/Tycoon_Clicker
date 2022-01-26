@@ -5,25 +5,82 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    public float currentBalance=0;
+    //properties
+    public int isFastFood
+    {
+        set
+        {
+            PlayerPrefs.SetInt("isFastFood",value);
+        }
+        get
+        {
+            return PlayerPrefs.GetInt("isFastFood",0);
+        }
+    }
+    public int isShop
+    {
+        set
+        {
+            PlayerPrefs.SetInt("isShop",value);
+        }
+        get
+        {
+            return PlayerPrefs.GetInt("isShop",0);
+        }
+    }
+    public int isBank
+    {
+        set
+        {
+            PlayerPrefs.SetInt("isBank",value);
+        }
+        get
+        {
+            return PlayerPrefs.GetInt("isBank",0);
+        }
+    }
+    public int isHotel
+    {
+        set
+        {
+            PlayerPrefs.SetInt("isHotel",value);
+        }
+        get
+        {
+            return PlayerPrefs.GetInt("isHotel",0);
+        }
+    }
+    public int isCoffee
+    {
+        set
+        {
+            PlayerPrefs.SetInt("isCoffee",value);
+        }
+        get
+        {
+            return PlayerPrefs.GetInt("isCoffee",0);
+        }
+    }
+
+    [HideInInspector] public float currentBalance;
     [SerializeField] private Text currentBalanceText;
-    [SerializeField] public GameObject[] stores;
+    [SerializeField] private GameObject[] stores,storeBuyArea;
+    [SerializeField] private int[] storesPrices;
     public static GameManager instance;
     void Awake()
     {
         if(instance==null)
             instance=this;
+
+        StoresControl();
+        currentBalance=PlayerPrefs.GetFloat("balance",0);
+
     }
     void Start()
     {
         currentBalanceText.text=currentBalance.ToString();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     public void AddToBalance(float amt)
     {
         currentBalance+=amt;
@@ -42,20 +99,87 @@ public class GameManager : MonoBehaviour
         switch(gameObject.tag)
         {
             case "FastFood":
-                stores[1].SetActive(true);
+                if(storesPrices[0]<=currentBalance)
+                {
+                    currentBalance-=storesPrices[0];
+                    isFastFood=1;
+                    stores[0].SetActive(true);
+                }
                 break;
             case "Shop":
-                stores[2].SetActive(true);
+                if(storesPrices[1]<=currentBalance)
+                {
+                    currentBalance-=storesPrices[1];
+                    isShop=1;
+                    stores[1].SetActive(true);
+                }
                 break;
             case "Bank":
-                stores[3].SetActive(true);
+                if(storesPrices[2]<=currentBalance)
+                {
+                    currentBalance-=storesPrices[2];
+                    isBank=1;
+                    stores[2].SetActive(true);
+                }
                 break;
             case "Hotel":
-                stores[4].SetActive(true);
+                if(storesPrices[3]<=currentBalance)
+                {
+                    currentBalance-=storesPrices[3];
+                    isHotel=1;
+                    stores[3].SetActive(true);
+                }
                 break;
             case "Coffee":
-                stores[5].SetActive(true);
+                if(storesPrices[4]<=currentBalance)
+                {
+                    currentBalance-=storesPrices[4];
+                    isCoffee=1;
+                    stores[4].SetActive(true);
+                }
                 break;
         }
+        StoresControl();
+    }
+    void StoresControl()
+    {
+        if(isFastFood==1)
+        {
+            stores[0].SetActive(true);
+            storeBuyArea[0].GetComponent<Button>().enabled=false;
+            storeBuyArea[0].GetComponentInChildren<Text>().text="Purchased";
+        }
+        if(isShop==1)
+        {
+            stores[1].SetActive(true);
+            storeBuyArea[1].GetComponent<Button>().enabled=false;
+            storeBuyArea[1].GetComponentInChildren<Text>().text="Purchased";
+        }
+        if(isBank==1)
+        {
+            stores[2].SetActive(true);
+            storeBuyArea[1].GetComponent<Button>().enabled=false;
+            storeBuyArea[1].GetComponentInChildren<Text>().text="Purchased";
+        }
+        if(isHotel==1)
+        {
+            stores[3].SetActive(true);
+            storeBuyArea[1].GetComponent<Button>().enabled=false;
+            storeBuyArea[1].GetComponentInChildren<Text>().text="Purchased";
+        }
+        if(isCoffee==1)
+        {
+            stores[4].SetActive(true);
+            storeBuyArea[1].GetComponent<Button>().enabled=false;
+            storeBuyArea[1].GetComponentInChildren<Text>().text="Purchased";
+        }
+    }
+    void OnApplicationQuit()
+    {
+        Debug.Log("Application ending after " + Time.time + " seconds");
+        float balance=PlayerPrefs.GetFloat("balance",0);
+        balance+=currentBalance;
+        PlayerPrefs.GetFloat("balanca",balance);
+        Debug.Log("Balance Saved: "+balance.ToString());
     }
 }

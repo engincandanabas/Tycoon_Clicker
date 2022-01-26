@@ -768,6 +768,21 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5015327788664370212, guid: 88a4c8ccb0a0ca945bfb85277e37ef92, type: 3}
   m_PrefabInstance: {fileID: 5015327788886540930}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &402751774 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5015327788664370215, guid: 88a4c8ccb0a0ca945bfb85277e37ef92, type: 3}
+  m_PrefabInstance: {fileID: 5015327788886540930}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &443766491 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3071678119536031831, guid: d69905e3dc7c8ee4ea2c9382875e5310, type: 3}
+  m_PrefabInstance: {fileID: 3071678119252803099}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &506031401 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5546273271902326275, guid: 5ff8602525331c4459ec102efee1c02f, type: 3}
+  m_PrefabInstance: {fileID: 5546273272048574846}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -930,15 +945,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88d642bb128de654fb73316b64053225, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentBalance: 0
+  currentBalance: 10.240437
   currentBalanceText: {fileID: 1222177065}
   stores:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1458854954}
+  - {fileID: 402751774}
+  - {fileID: 1078568362}
+  - {fileID: 443766491}
+  - {fileID: 506031401}
+  storeBuyArea:
+  - {fileID: 196406544}
+  - {fileID: 207110815}
+  - {fileID: 833306630}
+  - {fileID: 1923572146}
+  - {fileID: 702191596}
+  storesPrices: 0a000000140000001e0000002800000032000000
 --- !u!1 &697869708
 GameObject:
   m_ObjectHideFlags: 0
@@ -978,7 +999,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.2424417, y: 0.062339816}
   m_AnchorMax: {x: 0.72611666, y: 0.7843399}
-  m_AnchoredPosition: {x: -2.4413147, y: 13.339996}
+  m_AnchoredPosition: {x: -2.4412842, y: 13.339966}
   m_SizeDelta: {x: -4.8824, y: 86.115}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &697869710
@@ -1750,6 +1771,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 969881154}
   m_CullTransparentMesh: 1
+--- !u!1 &1078568362 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3216794537193751003, guid: 796cb9cd44ac7ca419368da2912ce864, type: 3}
+  m_PrefabInstance: {fileID: 3216794538378013373}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1122509261
 GameObject:
   m_ObjectHideFlags: 0
@@ -2503,7 +2529,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.7468831, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 8.56311, y: -0.0010375977}
+  m_AnchoredPosition: {x: 8.56311, y: -0.0009765625}
   m_SizeDelta: {x: -17.085999, y: 0.099975586}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1415868041
@@ -2570,6 +2596,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1415868039}
   m_CullTransparentMesh: 1
+--- !u!1 &1458854954 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5371066625950099721, guid: b78c159a319c44c4aa0ca925f3db6f3c, type: 3}
+  m_PrefabInstance: {fileID: 5371066626589609920}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1475740161
 GameObject:
   m_ObjectHideFlags: 0
@@ -3055,7 +3086,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.76445466, y: 0.8731513}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -7.6001587, y: 6.2160645}
+  m_AnchoredPosition: {x: -7.6000977, y: 6.2160645}
   m_SizeDelta: {x: 15.22998, y: -12.423996}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1643062971
@@ -3482,7 +3513,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2340623343913270878, guid: aaae62d4e0a163148bf7ff6ec07323c6, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 2.9000092
+      value: 2.899994
       objectReference: {fileID: 0}
     - target: {fileID: 2340623343923344752, guid: aaae62d4e0a163148bf7ff6ec07323c6, type: 3}
       propertyPath: m_AnchorMax.x
@@ -3494,7 +3525,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2340623343996029935, guid: aaae62d4e0a163148bf7ff6ec07323c6, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 1.9999847
+      value: 1.9999695
       objectReference: {fileID: 0}
     - target: {fileID: 2340623344169312788, guid: aaae62d4e0a163148bf7ff6ec07323c6, type: 3}
       propertyPath: m_AnchorMax.x
