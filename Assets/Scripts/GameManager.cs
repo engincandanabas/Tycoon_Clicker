@@ -71,16 +71,11 @@ public class GameManager : MonoBehaviour
     {
         if(instance==null)
             instance=this;
-
-        StoresControl();
+        StoresControl(true,false);
         currentBalance=PlayerPrefs.GetFloat("balance",0);
+        currentBalanceText.text=currentBalance.ToString("C2");
 
     }
-    void Start()
-    {
-        currentBalanceText.text=currentBalance.ToString();
-    }
-
     public void AddToBalance(float amt)
     {
         currentBalance+=amt;
@@ -139,47 +134,70 @@ public class GameManager : MonoBehaviour
                 }
                 break;
         }
-        StoresControl();
+        StoresControl(true,false);
     }
-    void StoresControl()
+    void StoresControl(bool isStart,bool isFinish)
     {
         if(isFastFood==1)
         {
             stores[0].SetActive(true);
             storeBuyArea[0].GetComponent<Button>().enabled=false;
             storeBuyArea[0].GetComponentInChildren<Text>().text="Purchased";
+            if(isStart)
+                stores[0].GetComponent<StoreManager>().storeCount=PlayerPrefs.GetInt("fastfoodStoreCount",1);
+            if(isFinish)
+                PlayerPrefs.SetInt("fastfoodStoreCount",stores[0].GetComponent<StoreManager>().storeCount);
         }
         if(isShop==1)
         {
             stores[1].SetActive(true);
             storeBuyArea[1].GetComponent<Button>().enabled=false;
             storeBuyArea[1].GetComponentInChildren<Text>().text="Purchased";
+            if(isStart)
+                stores[1].GetComponent<StoreManager>().storeCount=PlayerPrefs.GetInt("shopStoreCount",1);
+            if(isFinish)
+                PlayerPrefs.SetInt("shopStoreCount",stores[1].GetComponent<StoreManager>().storeCount);
         }
         if(isBank==1)
         {
             stores[2].SetActive(true);
-            storeBuyArea[1].GetComponent<Button>().enabled=false;
-            storeBuyArea[1].GetComponentInChildren<Text>().text="Purchased";
+            storeBuyArea[2].GetComponent<Button>().enabled=false;
+            storeBuyArea[2].GetComponentInChildren<Text>().text="Purchased";
+            if(isStart)
+                stores[2].GetComponent<StoreManager>().storeCount=PlayerPrefs.GetInt("bankStoreCount",1);
+            if(isFinish)
+                PlayerPrefs.SetInt("bankStoreCount",stores[2].GetComponent<StoreManager>().storeCount);
         }
         if(isHotel==1)
         {
             stores[3].SetActive(true);
-            storeBuyArea[1].GetComponent<Button>().enabled=false;
-            storeBuyArea[1].GetComponentInChildren<Text>().text="Purchased";
+            storeBuyArea[3].GetComponent<Button>().enabled=false;
+            storeBuyArea[3].GetComponentInChildren<Text>().text="Purchased";
+            if(isStart)
+                stores[3].GetComponent<StoreManager>().storeCount=PlayerPrefs.GetInt("hotelStoreCount",1);
+            if(isFinish)
+                PlayerPrefs.SetInt("hotelStoreCount",stores[3].GetComponent<StoreManager>().storeCount);
         }
         if(isCoffee==1)
         {
             stores[4].SetActive(true);
-            storeBuyArea[1].GetComponent<Button>().enabled=false;
-            storeBuyArea[1].GetComponentInChildren<Text>().text="Purchased";
+            storeBuyArea[4].GetComponent<Button>().enabled=false;
+            storeBuyArea[4].GetComponentInChildren<Text>().text="Purchased";
+            if(isStart)
+                stores[4].GetComponent<StoreManager>().storeCount=PlayerPrefs.GetInt("coffeeStoreCount",1);
+            if(isFinish)
+                PlayerPrefs.SetInt("coffeeStoreCount",stores[4].GetComponent<StoreManager>().storeCount);
         }
+        if(isStart)
+            stores[5].GetComponent<StoreManager>().storeCount=PlayerPrefs.GetInt("bookStoreCount",1);
+        if(isFinish)
+            PlayerPrefs.SetInt("bookStoreCount",stores[5].GetComponent<StoreManager>().storeCount);
     }
     void OnApplicationQuit()
     {
         Debug.Log("Application ending after " + Time.time + " seconds");
-        float balance=PlayerPrefs.GetFloat("balance",0);
-        balance+=currentBalance;
-        PlayerPrefs.GetFloat("balanca",balance);
-        Debug.Log("Balance Saved: "+balance.ToString());
+        PlayerPrefs.SetFloat("balance",currentBalance);
+        Debug.Log("Balance Saved: "+currentBalance.ToString());
+        StoresControl(false,true);
     }
 }

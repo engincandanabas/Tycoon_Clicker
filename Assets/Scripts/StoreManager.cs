@@ -16,14 +16,14 @@ public class StoreManager : MonoBehaviour
     bool startTimer;
     public bool ManagerUnlocked;
     private float nextStoreCost;
-    int storeCount;
+    [HideInInspector]public int storeCount;
     //
     void Start()
     {
-        storeCount=1;
         startTimer=false;
         nextStoreCost=baseStoreCost;
         buyButtonText.text="Buy "+nextStoreCost.ToString("C2");
+        countText.text=storeCount.ToString();
     }
 
     // Update is called once per frame
